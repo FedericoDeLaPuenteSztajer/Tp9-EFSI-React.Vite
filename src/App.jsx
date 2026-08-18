@@ -6,8 +6,8 @@ function App() {
 
   const [pokemon, setPokemon] = useState({});
 
-  const SearchPokemon = async () => {
-    const response = await pokeAPI.get("https://pokeapi.co/api/v2/pokemon/ditto");
+  const SearchPokemon = async (pokemonName) => {
+    const response = await pokeAPI.get("pokemon/"+ pokemonName);
     const pokeData = response.data;
     const statsList = []
 
@@ -21,7 +21,7 @@ function App() {
     setPokemon({
       name: pokeData.name[0].toUpperCase() + pokeData.name.slice(1),
       sprite: (pokeData.sprites.other["official-artwork"])["front_shiny"],
-      types: pokeData.types[0].type.name + (pokeData.types[1] ? "/" + pokeData.types[1].type.name : ""),
+      types: pokeData.types[0].type.name[0].toUpperCase() + pokeData.types[0].type.name.slice(1) + (pokeData.types[1] ? "/" + pokeData.types[1].type.name[0].toUpperCase() + pokeData.types[1].type.name.slice(1) : ""),
       statsList: statsList
     });
   }
@@ -40,11 +40,11 @@ function App() {
               </li>
             ))}
           </ul>
-          <button onClick={() => SearchPokemon()}></button>
+          <button onClick={() => SearchPokemon("skorupi")}>Search a Pokemon</button> {/* Harcodeado */}
         </div>
         ) : (
           <div>
-            <h1>Search a Pokemon</h1>
+            <h1>none</h1>
           </div>)}
     </>
   )
