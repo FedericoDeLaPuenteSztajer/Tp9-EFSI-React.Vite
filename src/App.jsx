@@ -1,13 +1,20 @@
 import { useState, useEffect } from 'react';
-import './App.css';
 import pokeAPI from './modules/PokeAPI.js';
+
+import './App.css';
+
+// Componentes
+import SearchBar from './components/SearchBar.js';
 
 function App() {
 
   const [pokemon, setPokemon] = useState({});
+  const [logState, setLogState] = useState("Esperando busqueda");
 
   const SearchPokemon = async (pokemonName) => {
-    const response = await pokeAPI.get("pokemon/"+ pokemonName);
+    setLogState("Buscando pokemon...")
+
+    const response = await pokeAPI.get("pokemon/" + pokemonName);
     const pokeData = response.data;
     const statsList = []
 
@@ -16,6 +23,8 @@ function App() {
         name: pokeStat.stat.name,
         basePoints: pokeStat.base_stat
       })
+
+    setLogState("Pokemon encontrado")
     });
 
     setPokemon({
@@ -29,22 +38,11 @@ function App() {
   return (
     <>
       {pokemon ?
-        (<div>
-          <h1>{pokemon.name}</h1>
-          <img src={pokemon.sprite}></img>
-          <h2>{pokemon.types}</h2>
-          <ul>
-            {pokemon.statsList?.map(stat => (
-              <li key={stat.name}>
-                {stat.name}: {stat.basePoints}
-              </li>
-            ))}
-          </ul>
-          <button onClick={() => SearchPokemon("skorupi")}>Search a Pokemon</button> {/* Harcodeado */}
-        </div>
+        (
+        <SearchBar SearchPokemon={SearchPokemon}/>
         ) : (
           <div>
-            <h1>none</h1>
+            <h1>logState</h1>
           </div>)}
     </>
   )
