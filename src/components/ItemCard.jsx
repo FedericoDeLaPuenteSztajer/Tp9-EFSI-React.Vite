@@ -7,6 +7,7 @@ function ItemCard(props) {
   return (
     <>
         <h1>{pokemon.name}</h1>
+        {/*HEART BUTTON WITH EMOJI*/}
         <img src={pokemon.sprite}></img>
         <h2>{pokemon.types}</h2>
         <ul>

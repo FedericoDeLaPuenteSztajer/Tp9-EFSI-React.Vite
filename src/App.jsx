@@ -6,11 +6,17 @@ import './App.css';
 // Componentes
 import SearchBar from './components/SearchBar.jsx';
 import ItemCard from './components/ItemCard.jsx';
+import Header from './components/Header.jsx';
 
 function App() {
 
   const [pokemon, setPokemon] = useState(null);
   const [logState, setLogState] = useState("Esperando busqueda");
+
+  const GoHome = () => {
+    setLogState("Esperando busqueda")
+    setPokemon(null);
+  }
 
   const SearchPokemon = async (pokemonName) => {
     setLogState("Buscando pokemon...")
@@ -45,6 +51,7 @@ function App() {
 
   return (
     <>
+      <Header GoHome={GoHome} />
       <SearchBar SearchPokemon={SearchPokemon} />
       {pokemon ?
         (
