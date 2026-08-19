@@ -1,6 +1,8 @@
-import './ItemCard.css'
+import './ItemCard.css';
 
-function ItemCard() {
+function ItemCard(props) {
+
+  const pokemon= props.pokemon;
 
   return (
     <>
@@ -19,4 +21,4 @@ function ItemCard() {
   )
 }
 
-export default ItemCard
+export default ItemCard;

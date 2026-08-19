@@ -1,4 +1,4 @@
-import './SearchBar.css'
+import './SearchBar.css';
 
 function SearchBar(props) {
   const submit = (e) => {
@@ -10,11 +10,8 @@ function SearchBar(props) {
 
   return (
     <>
-      <input></input>
-      <button onClick={() => SearchPokemon("skorupi")}>Search a Pokemon</button> {/* Harcodeado */}
-
       <form onSubmit={submit}>
-        <label>Nombre del Shiny</label>
+        <label>Nombre del Shiny: </label>
         <input type="text" name="pokeName" placeholder="Skorupi" required />
         
         <button type="submit" onClick={() => SearchPokemon("skorupi")}>Search a Pokemon</button>
@@ -23,4 +20,4 @@ function SearchBar(props) {
   )
 }
 
-export default SearchBar
+export default SearchBar;
