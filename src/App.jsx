@@ -12,6 +12,7 @@ function App() {
 
   const [pokemon, setPokemon] = useState(null);
   const [logState, setLogState] = useState("Esperando busqueda");
+  const [favoritesList, setFavoritesList] = useState([]);
 
   const GoHome = () => {
     setLogState("Esperando busqueda")
@@ -55,10 +56,9 @@ function App() {
       <SearchBar SearchPokemon={SearchPokemon} />
       {pokemon ?
         (
-          <ItemCard pokemon={pokemon} />
+          <ItemCard pokemon={pokemon} favoritesList={favoritesList} setFavoritesList={setFavoritesList}/>
         ) : (
           <div>
-            {console.log("This is being seen")}
             <h1>{logState}</h1>
           </div>)}
     </>
